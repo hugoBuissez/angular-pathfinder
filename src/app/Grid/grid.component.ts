@@ -28,18 +28,27 @@ export class GridComponent implements OnInit {
     for (let y = 0; y < this.boardHeight; y++) {
       var row: Cell[] = [];
       for (let x = 0; x < this.boardWitdh; x++) {
-        row.push({ x: x, y: y, isStartNode: false, isEndNode: false, isVisited: false })
+        row.push({
+          id: this.boardWitdh * x + y,
+          x: x,
+          y: y,
+          isStartNode: false,
+          isEndNode: false,
+          isVisited: false,
+          isPath: false
+        })
       }
 
       this.board.push(row);
     }
   }
 
-  handleCell(cell: Cell): void {
-
+  onVisualise(): void {
     var bfs = new BFS(this.board);
+    var fatherPath = bfs.execute(this.startNode, this.endNode);
+  }
 
-    bfs.execute(cell, this.endNode)
+  handleCell(cell: Cell): void {
 
     if (cell.isEndNode) {
       cell.isEndNode = false;

@@ -1,11 +1,20 @@
 <div class="gridCtn">
+  <button mat-raised-button color="primary" id="btn" (click)="onVisualise()">
+    Visualise
+  </button>
+
   <table>
     <tr *ngFor="let row of board; index as y">
       <td
         *ngFor="let cell of row; index as x"
-        [ngClass]="{ startNode: cell.isStartNode, endNode: cell.isEndNode }"
+        [ngClass]="{
+          startNode: cell.isStartNode,
+          endNode: cell.isEndNode,
+          visitedNode: cell.isVisited && !cell.isStartNode && !cell.isEndNode,
+          pathNode: cell.isPath
+        }"
         (click)="handleCell(cell)"
-        class="cell"
+        class="cell animNode"
       ></td>
     </tr>
   </table>

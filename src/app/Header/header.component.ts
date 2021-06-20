@@ -1,4 +1,5 @@
-import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { GridComponent } from '../Grid/grid.component';
 
 @Component({
   selector: 'app-header',
@@ -20,7 +21,6 @@ export class HeaderComponent implements OnInit {
   }
 
   onVisualise(): void {
-    this.visualise.emit();
   }
 
   onClearPath(): void {

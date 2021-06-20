@@ -16,14 +16,83 @@ table {
   border: 1px solid var(--border-cell-color);
 }
 
-.startNode {
-  background-color: var(--start-node-color);
-}
-
 .endNode {
-  background-color: var(--end-node-color);
+  animation-name: node-animation-end;
 }
 
 .visitedNode {
   background-color: var(--visited-node-color);
+}
+
+.pathNode {
+  animation-name: node-animation-path;
+}
+
+.startNode {
+  animation-name: node-animation-start;
+}
+
+.animNode {
+  animation-duration: 0.3s;
+  animation-timing-function: ease-out;
+  animation-delay: 0;
+  animation-direction: alternate;
+  animation-iteration-count: 1;
+  animation-fill-mode: forwards;
+  animation-play-state: running;
+}
+
+@keyframes node-animation-start {
+  0% {
+    transform: scale(0.3);
+    border-radius: 50%;
+    background-color: var(--start-node-color);
+  }
+  50% {
+    transform: scale(1.2);
+    border-radius: 20%;
+
+    background-color: var(--start-node-color);
+  }
+  100% {
+    transform: scale(1);
+    border-radius: 0;
+    background-color: var(--start-node-color);
+  }
+}
+
+@keyframes node-animation-end {
+  0% {
+    transform: scale(0.3);
+    border-radius: 50%;
+    background-color: var(--end-node-color);
+  }
+  50% {
+    transform: scale(1.2);
+    border-radius: 20%;
+    background-color: var(--end-node-color);
+  }
+  100% {
+    transform: scale(1);
+    border-radius: 0;
+    background-color: var(--end-node-color);
+  }
+}
+
+@keyframes node-animation-path {
+  0% {
+    transform: scale(0.3);
+    border-radius: 50%;
+    background-color: var(--path-color);
+  }
+  50% {
+    transform: scale(1.2);
+    border-radius: 20%;
+    background-color: var(--path-color);
+  }
+  100% {
+    transform: scale(1);
+    border-radius: 0;
+    background-color: var(--path-color);
+  }
 }
