@@ -1,0 +1,28 @@
+<h1>pathz finder</h1>
+
+<mat-divider></mat-divider>
+
+<div class="filterRow">
+  <button
+    mat-stroked-button
+    color="primary"
+    id="clearWalls"
+    (click)="onClearWalls()"
+  >
+    Clear Walls
+  </button>
+
+  <button
+    mat-stroked-button
+    color="primary"
+    id="clearPath"
+    (click)="onClearPath()"
+  >
+    Clear Path
+  </button>
+
+  <mat-checkbox class="example-margin">Show trace</mat-checkbox>
+  <mat-checkbox class="example-margin"> Allow diagonal</mat-checkbox>
+
+  <button mat-raised-button color="primary" id="btn" (click)="onVisualise()">Visualise</button>
+</div>

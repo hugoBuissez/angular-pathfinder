@@ -1,0 +1,12 @@
+<div class="gridCtn">
+  <table>
+    <tr *ngFor="let row of board; index as y">
+      <td
+        *ngFor="let cell of row; index as x"
+        [ngClass]="{ startNode: cell.isStartNode, endNode: cell.isEndNode }"
+        (click)="handleCell(cell)"
+        class="cell"
+      ></td>
+    </tr>
+  </table>
+</div>

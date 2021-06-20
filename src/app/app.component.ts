@@ -1,4 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, Renderer2 } from '@angular/core';
+import { BFS } from "./Algorithms/BFS";
+
+declare var jquery: any;
+declare var $: any;
 
 @Component({
   selector: 'app-root',
@@ -6,5 +10,9 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'PatzFinder';
+  title = 'path finder';
+
+  togglePath() {
+    console.log("Visualise button pressed.");
+  }
 }

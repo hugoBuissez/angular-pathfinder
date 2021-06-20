@@ -1,1 +1,23 @@
 /* You can add global styles to this file, and also import other style files */
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@200;300;400;500&display=swap");
+
+* {
+  font-family: "Montserrat", sans-serif;
+  --start-node-color: #b8f2e6;
+  --end-node-color: #ffa69e;
+  --border-cell-color: #afd8f8;
+  --path-color: #faf3dd;
+  --visited-node-color: ##98fb98;
+}
+
+html,
+body {
+  margin: 0 20px 20px 20px;
+  height: 100%;
+  overflow-y: hidden;
+}
+
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}

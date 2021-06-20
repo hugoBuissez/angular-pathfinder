@@ -1,0 +1,17 @@
+h1 {
+  font-size: 35px;
+  margin-top: 20px;
+}
+
+.filterRow {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: left;
+  margin-top: 20px;
+  width: 40%;
+}
+
+.filterRow > *:not(:last-child) {
+  margin-right: 20px;
+}
