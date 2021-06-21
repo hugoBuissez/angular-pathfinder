@@ -10,7 +10,8 @@ export class HeaderComponent implements OnInit {
 
   @Output() visualise = new EventEmitter();
   @Output() diagonal = new EventEmitter();
-
+  @Output() clearPath = new EventEmitter();
+  @Output() randomWalls = new EventEmitter();
 
   constructor() {
   }
@@ -26,7 +27,12 @@ export class HeaderComponent implements OnInit {
     this.visualise.emit('visualise');
   }
 
-  onClearPath(): void {
+  emitClearPath(): void {
+    this.clearPath.emit('clearPath');
+  }
+
+  emitRandomWalls(): void {
+    this.randomWalls.emit('randomWalls');
   }
 
   handleShowTrace(event: any): void {

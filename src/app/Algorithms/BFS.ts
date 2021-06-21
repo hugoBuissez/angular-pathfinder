@@ -24,7 +24,7 @@ export class BFS {
 
       for (let neighbour of neighbours) {
 
-        if (!neighbour.isVisited) {
+        if (!neighbour.isVisited && !neighbour.isWall) {
           father[neighbour.id] = currentNode?.id;
 
           if (neighbour.isEndNode) {

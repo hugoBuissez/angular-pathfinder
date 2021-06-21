@@ -25,9 +25,11 @@ export class GridComponent implements OnInit {
   endNode: Cell; // Attribute is null if the board has not endNode yet.
 
   diagonals: boolean = false;
+  trace: boolean = false;
 
   ngOnInit(): void {
 
+    // Board setup.
     for (let y = 0; y < this.boardHeight; y++) {
       var row: Cell[] = [];
       for (let x = 0; x < this.boardWitdh; x++) {
@@ -38,7 +40,8 @@ export class GridComponent implements OnInit {
           isStartNode: false,
           isEndNode: false,
           isVisited: false,
-          isPath: false
+          isPath: false,
+          isWall: false
         })
       }
 
@@ -47,6 +50,7 @@ export class GridComponent implements OnInit {
   }
 
   onVisualise(): void {
+    this.onClearPath();
     var bfs = new BFS(this.board);
     var fatherPath = bfs.execute(this.startNode, this.endNode, this.diagonals);
     Utils.animatePath(fatherPath);
@@ -56,7 +60,22 @@ export class GridComponent implements OnInit {
     this.diagonals = !this.diagonals;
   }
 
+  onClearPath(): void {
+    this.board.forEach(row => {
+      row.map((node) => { if (node.isPath || node.isVisited) node.isPath = node.isVisited = false; })
+    });
+  }
+
+  onRandomWalls(): void {
+    this.board.forEach((row) => {
+      row.map((node) => { if (Math.floor(Math.random() * 4) == 2 && !node.isStartNode && !node.isEndNode) node.isWall = true })
+    })
+  }
+
   handleCell(cell: Cell): void {
+
+    if (cell.isWall)
+      return;
 
     if (cell.isEndNode) {
       cell.isEndNode = false;

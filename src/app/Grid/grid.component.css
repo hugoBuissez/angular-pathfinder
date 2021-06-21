@@ -32,6 +32,10 @@ table {
   animation-name: node-animation-start;
 }
 
+.wallNode {
+  animation-name: node-animation-wall;
+}
+
 .animNode {
   animation-duration: 0.3s;
   animation-timing-function: ease-out;
@@ -94,5 +98,23 @@ table {
     transform: scale(1);
     border-radius: 0;
     background-color: var(--path-color);
+  }
+}
+
+@keyframes node-animation-wall {
+  0% {
+    transform: scale(0.3);
+    border-radius: 50%;
+    background-color: var(--wall-node-color);
+  }
+  50% {
+    transform: scale(1.2);
+    border-radius: 20%;
+    background-color: var(--wall-node-color);
+  }
+  100% {
+    transform: scale(1);
+    border-radius: 0;
+    background-color: var(--wall-node-color);
   }
 }

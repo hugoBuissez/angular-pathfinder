@@ -6,4 +6,5 @@ export interface Cell {
     isEndNode: boolean;
     isVisited: boolean;
     isPath: boolean;
+    isWall: boolean;
 }

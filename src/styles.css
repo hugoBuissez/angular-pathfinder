@@ -5,9 +5,10 @@
   font-family: "Montserrat", sans-serif;
   --start-node-color: #aed9e0;
   --end-node-color: #ffa69e;
-  --border-cell-color: #afd8f8;
+  --border-cell-color: #d0d0d0;
   --path-color: #b8f2e6;
   --visited-node-color: #faf3dd;
+  --wall-node-color: #808080;
 }
 
 html,

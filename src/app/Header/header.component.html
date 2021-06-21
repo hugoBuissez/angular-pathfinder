@@ -12,11 +12,15 @@
     Clear Walls
   </button>
 
+  <button mat-stroked-button color="primary" (click)="emitRandomWalls()">
+    Random maze
+  </button>
+
   <button
     mat-stroked-button
     color="primary"
     id="clearPath"
-    (click)="onClearPath()"
+    (click)="emitClearPath()"
   >
     Clear Path
   </button>
