@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Cell } from '../Cell';
 import { BFS } from '../Algorithms/BFS'
+import { Utils } from '../Algorithms/Utils';
 
 @Component({
   selector: 'app-grid',
@@ -22,6 +23,8 @@ export class GridComponent implements OnInit {
 
   startNode: Cell; // Attribute is null if the board has not startNode yet.
   endNode: Cell; // Attribute is null if the board has not endNode yet.
+
+  diagonals: boolean = false;
 
   ngOnInit(): void {
 
@@ -45,7 +48,12 @@ export class GridComponent implements OnInit {
 
   onVisualise(): void {
     var bfs = new BFS(this.board);
-    var fatherPath = bfs.execute(this.startNode, this.endNode);
+    var fatherPath = bfs.execute(this.startNode, this.endNode, this.diagonals);
+    Utils.animatePath(fatherPath);
+  }
+
+  onDiagonal(): void {
+    this.diagonals = !this.diagonals;
   }
 
   handleCell(cell: Cell): void {

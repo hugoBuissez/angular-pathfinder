@@ -9,6 +9,8 @@ import { GridComponent } from '../Grid/grid.component';
 export class HeaderComponent implements OnInit {
 
   @Output() visualise = new EventEmitter();
+  @Output() diagonal = new EventEmitter();
+
 
   constructor() {
   }
@@ -20,7 +22,8 @@ export class HeaderComponent implements OnInit {
   onClearWalls(): void {
   }
 
-  onVisualise(): void {
+  emitVisualise(): any {
+    this.visualise.emit('visualise');
   }
 
   onClearPath(): void {
@@ -29,7 +32,7 @@ export class HeaderComponent implements OnInit {
   handleShowTrace(event: any): void {
   }
 
-  handleDiagonal(event: any): void {
-
+  emitDiagonal(): void {
+    this.diagonal.emit('diagonal')
   }
 }

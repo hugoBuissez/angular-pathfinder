@@ -22,7 +22,11 @@
   </button>
 
   <mat-checkbox class="example-margin">Show trace</mat-checkbox>
-  <mat-checkbox class="example-margin"> Allow diagonal</mat-checkbox>
+  <mat-checkbox class="example-margin" (click)="emitDiagonal()">
+    Allow diagonal</mat-checkbox
+  >
 
-  <button mat-raised-button color="primary" id="btn" (click)="onVisualise()">Visualise</button>
+  <button mat-raised-button color="primary" id="btn" (click)="emitVisualise()">
+    Visualise
+  </button>
 </div>

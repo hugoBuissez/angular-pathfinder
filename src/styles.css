@@ -3,11 +3,11 @@
 
 * {
   font-family: "Montserrat", sans-serif;
-  --start-node-color: #b8f2e6;
+  --start-node-color: #aed9e0;
   --end-node-color: #ffa69e;
   --border-cell-color: #afd8f8;
-  --path-color: #faf3dd;
-  --visited-node-color: #98fb98;
+  --path-color: #b8f2e6;
+  --visited-node-color: #faf3dd;
 }
 
 html,

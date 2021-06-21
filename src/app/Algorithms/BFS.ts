@@ -1,4 +1,3 @@
-import { CursorError } from "@angular/compiler/src/ml_parser/lexer";
 import { Cell } from "../Cell";
 import { Utils } from "./Utils"
 
@@ -8,7 +7,7 @@ export class BFS {
 
   constructor(private board: Cell[][]) { this.board = board }
 
-  public execute(startNode: Cell, endNode: Cell): any {
+  public execute(startNode: Cell, endNode: Cell, diag: boolean): any {
     console.log('BFS');
 
     var queue: Cell[] = [];
@@ -21,7 +20,7 @@ export class BFS {
     while (queue.length) {
       var currentNode: Cell | undefined = queue.pop();
 
-      var neighbours: Cell[] = Utils.getNeigboursNode(currentNode, this.board);
+      var neighbours: Cell[] = Utils.getNeigboursNode(currentNode, this.board, diag);
 
       for (let neighbour of neighbours) {
 
@@ -29,9 +28,7 @@ export class BFS {
           father[neighbour.id] = currentNode?.id;
 
           if (neighbour.isEndNode) {
-            this.getPathFromFather(startNode, endNode, father);
-
-            return father; // End node has been reached.
+            return Utils.getPathFromFather(startNode, endNode, father, this.board);
           }
           queue.unshift(neighbour);
 
@@ -39,33 +36,6 @@ export class BFS {
             neighbour.isVisited = true;
         }
       }
-    }
-  }
-
-  public getPathFromFather(startNode: Cell, endNode: Cell, father: number[] | undefined[]): any {
-
-    var finalPath = [];
-    var i: number | undefined = father[endNode.id];
-
-    while (i && father[i] != -1) {
-      var currentNode: Cell = this.board[i % this.board[0].length][Math.floor(i / this.board[0].length)];
-      finalPath.push(currentNode);
-      i = father[i];
-    }
-
-    this.animatePath(finalPath);
-  }
-
-  private animatePath(path: Cell[]) {
-    for (let i = 0; i < path.length; i++) {
-      setTimeout(
-        function () {
-          path[i].isVisited = false;
-          path[i].isPath = true;
-        },
-        i * 40,
-        i
-      );
     }
   }
 }
