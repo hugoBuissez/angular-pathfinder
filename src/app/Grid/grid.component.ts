@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, HostListener, OnInit } from '@angular/core';
 import { Cell } from '../Cell';
 import { BFS } from '../Algorithms/BFS'
 import { Utils } from '../Algorithms/Utils';
@@ -92,5 +92,10 @@ export class GridComponent implements OnInit {
       this.hasEndNode = true;
       this.endNode = cell;
     }
+  }
+
+  handleWall(cell: Cell): void {
+    if (!cell.isStartNode && !cell.isEndNode)
+      cell.isWall = true;
   }
 }
