@@ -51,6 +51,7 @@ export class Utils {
             i = father[i];
         }
 
+        finalPath.push(endNode)
         return finalPath;
     }
 
@@ -59,6 +60,8 @@ export class Utils {
      */
     public static animatePath(path: Cell[]) {
         for (let i = 0; i < path.length; i++) {
+            console.log("yes");
+
             setTimeout(
                 function () {
                     path[i].isVisited = false;
@@ -67,6 +70,23 @@ export class Utils {
                 i * 40,
                 i
             );
+        }
+    }
+
+    public static animateTrace(trace: Cell[], path: Cell[]) {
+        for (let i = 0; i < trace.length; i++) {
+            setTimeout(
+                function () {
+                    if (i == trace.length - 1) {
+                        Utils.animatePath(path);
+                        return;
+                    }
+                    trace[i].animateVisited = true;
+                },
+                i * 10,
+                i
+            );
+
         }
     }
 }

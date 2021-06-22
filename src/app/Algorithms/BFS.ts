@@ -12,6 +12,7 @@ export class BFS {
 
     var queue: Cell[] = [];
     var father: number[] | undefined[] = []; // Father vector to retrieve the final path.
+    var visited: Cell[] = []; // Keep track of visited node order.
 
     queue.unshift(startNode);
     startNode.isVisited = true;
@@ -22,6 +23,7 @@ export class BFS {
 
       var neighbours: Cell[] = Utils.getNeigboursNode(currentNode, this.board, diag);
 
+      var i = 0;
       for (let neighbour of neighbours) {
         if (neighbour.isWall) continue;
 
@@ -29,12 +31,15 @@ export class BFS {
           father[neighbour.id] = currentNode?.id;
 
           if (neighbour.isEndNode) {
-            return Utils.getPathFromFather(startNode, endNode, father, this.board);
+
+            return [Utils.getPathFromFather(startNode, endNode, father, this.board), visited];
           }
           queue.unshift(neighbour);
 
-          if (!neighbour.isStartNode)
+          if (!neighbour.isStartNode) {
             neighbour.isVisited = true;
+            visited.push(neighbour);
+          }
         }
       }
     }

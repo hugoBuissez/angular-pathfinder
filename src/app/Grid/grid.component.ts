@@ -36,8 +36,13 @@ export class GridComponent implements OnInit {
   onVisualise(): void {
     this.onClearPath();
     var bfs = new BFS(this.board);
-    var fatherPath = bfs.execute(this.startNode, this.endNode, this.diagonals, this.trace);
-    Utils.animatePath(fatherPath);
+    var bfsResult = bfs.execute(this.startNode, this.endNode, this.diagonals, this.trace);
+    var fatherPath = bfsResult[0];
+
+    if (this.trace)
+      Utils.animateTrace(bfsResult[1], fatherPath)
+    else
+      Utils.animatePath(fatherPath);
   }
 
   onDiagonal(): void {
@@ -88,6 +93,7 @@ export class GridComponent implements OnInit {
           isStartNode: false,
           isEndNode: false,
           isVisited: false,
+          animateVisited: false,
           isPath: false,
           isWall: false
         })

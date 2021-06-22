@@ -5,6 +5,7 @@
   (randomWalls)="onRandomWalls()"
   (clearWalls)="onClearWalls()"
   (trace)="onTrace()"
+
 ></app-header>
 
 <div class="gridCtn">
@@ -15,7 +16,7 @@
         [ngClass]="{
           startNode: cell.isStartNode,
           endNode: cell.isEndNode,
-          visitedNode:
+          visitedNode: cell.animateVisited &&
             cell.isVisited && trace && !cell.isStartNode && !cell.isEndNode,
           pathNode: cell.isPath && !cell.isStartNode && !cell.isEndNode,
           wallNode: cell.isWall && !cell.isStartNode && !cell.isEndNode
