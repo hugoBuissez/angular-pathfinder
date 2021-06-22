@@ -3,6 +3,8 @@
   (diagonal)="onDiagonal()"
   (clearPath)="onClearPath()"
   (randomWalls)="onRandomWalls()"
+  (clearWalls)="onClearWalls()"
+  (trace)="onTrace()"
 ></app-header>
 
 <div class="gridCtn">
@@ -18,7 +20,12 @@
           pathNode: cell.isPath && !cell.isStartNode && !cell.isEndNode,
           wallNode: cell.isWall && !cell.isStartNode && !cell.isEndNode
         }"
+        
         (click)="handleCell(cell)"
+        (mousedown)="onMouseDownCell(cell)"
+        (mouseenter)="onMouseEnterCell(cell)"
+        (mouseup)="onMouseUpCell(cell)"
+
         class="cell animNode left-hr"
       ></td>
     </tr>

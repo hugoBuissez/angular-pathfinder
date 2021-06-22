@@ -27,9 +27,57 @@ export class GridComponent implements OnInit {
   diagonals: boolean = false;
   trace: boolean = false;
 
-  ngOnInit(): void {
+  isMouseDown: boolean = false;
 
-    // Board setup.
+  ngOnInit(): void {
+    this.setupGrid();
+  }
+
+  onVisualise(): void {
+    this.onClearPath();
+    var bfs = new BFS(this.board);
+    var fatherPath = bfs.execute(this.startNode, this.endNode, this.diagonals, this.trace);
+    Utils.animatePath(fatherPath);
+  }
+
+  onDiagonal(): void {
+    this.diagonals = !this.diagonals;
+  }
+
+  onTrace(): void {
+    this.trace = !this.trace;
+  }
+
+  onClearPath(): void {
+    this.board.forEach(row => {
+      row.map((node) => { if (node.isPath || node.isVisited) node.isPath = node.isVisited = false; })
+    });
+  }
+
+  onClearWalls(): void {
+    this.board.forEach(row => { row.forEach(node => { if (node.isWall) node.isWall = false; }); });
+  }
+
+  onRandomWalls(): void {
+    this.board.forEach((row) => {
+      row.map((node) => { if (Math.floor(Math.random() * 4) == 2 && !node.isStartNode && !node.isEndNode) node.isWall = true })
+    })
+  }
+
+  onMouseDownCell(cell: Cell): void {
+    this.isMouseDown = true;
+  }
+
+  onMouseEnterCell(cell: Cell): void {
+    if (!this.isMouseDown || cell.isStartNode || cell.isEndNode) return;
+    cell.isWall = true;
+  }
+
+  onMouseUpCell(cell: Cell): void {
+    this.isMouseDown = false;
+  }
+
+  setupGrid(): void {
     for (let y = 0; y < this.boardHeight; y++) {
       var row: Cell[] = [];
       for (let x = 0; x < this.boardWitdh; x++) {
@@ -47,29 +95,6 @@ export class GridComponent implements OnInit {
 
       this.board.push(row);
     }
-  }
-
-  onVisualise(): void {
-    this.onClearPath();
-    var bfs = new BFS(this.board);
-    var fatherPath = bfs.execute(this.startNode, this.endNode, this.diagonals);
-    Utils.animatePath(fatherPath);
-  }
-
-  onDiagonal(): void {
-    this.diagonals = !this.diagonals;
-  }
-
-  onClearPath(): void {
-    this.board.forEach(row => {
-      row.map((node) => { if (node.isPath || node.isVisited) node.isPath = node.isVisited = false; })
-    });
-  }
-
-  onRandomWalls(): void {
-    this.board.forEach((row) => {
-      row.map((node) => { if (Math.floor(Math.random() * 4) == 2 && !node.isStartNode && !node.isEndNode) node.isWall = true })
-    })
   }
 
   handleCell(cell: Cell): void {

@@ -7,7 +7,7 @@ export class BFS {
 
   constructor(private board: Cell[][]) { this.board = board }
 
-  public execute(startNode: Cell, endNode: Cell, diag: boolean): any {
+  public execute(startNode: Cell, endNode: Cell, diag: boolean, trace: boolean): any {
     console.log('BFS');
 
     var queue: Cell[] = [];
@@ -23,8 +23,9 @@ export class BFS {
       var neighbours: Cell[] = Utils.getNeigboursNode(currentNode, this.board, diag);
 
       for (let neighbour of neighbours) {
+        if (neighbour.isWall) continue;
 
-        if (!neighbour.isVisited && !neighbour.isWall) {
+        if (!neighbour.isVisited) {
           father[neighbour.id] = currentNode?.id;
 
           if (neighbour.isEndNode) {

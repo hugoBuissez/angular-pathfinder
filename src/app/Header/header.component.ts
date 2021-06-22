@@ -10,8 +10,11 @@ export class HeaderComponent implements OnInit {
 
   @Output() visualise = new EventEmitter();
   @Output() diagonal = new EventEmitter();
+  @Output() trace = new EventEmitter();
   @Output() clearPath = new EventEmitter();
   @Output() randomWalls = new EventEmitter();
+  @Output() clearWalls = new EventEmitter();
+
 
   constructor() {
   }
@@ -20,11 +23,16 @@ export class HeaderComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  onClearWalls(): void {
+  emitClearWalls(): void {
+    this.clearWalls.emit('clearWalls');
   }
 
   emitVisualise(): any {
     this.visualise.emit('visualise');
+  }
+
+  emitTrace(): any {
+    this.trace.emit('trace');
   }
 
   emitClearPath(): void {
@@ -33,9 +41,6 @@ export class HeaderComponent implements OnInit {
 
   emitRandomWalls(): void {
     this.randomWalls.emit('randomWalls');
-  }
-
-  handleShowTrace(event: any): void {
   }
 
   emitDiagonal(): void {

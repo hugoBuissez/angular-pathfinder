@@ -7,7 +7,7 @@
     mat-stroked-button
     color="primary"
     id="clearWalls"
-    (click)="onClearWalls()"
+    (click)="emitClearWalls()"
   >
     Clear Walls
   </button>
@@ -25,7 +25,7 @@
     Clear Path
   </button>
 
-  <mat-checkbox class="example-margin">Show trace</mat-checkbox>
+  <mat-checkbox class="example-margin" (click)="emitTrace()">Show trace</mat-checkbox>
   <mat-checkbox class="example-margin" (click)="emitDiagonal()">
     Allow diagonal</mat-checkbox
   >
