@@ -55,7 +55,7 @@ export class GridComponent implements OnInit {
 
   onClearPath(): void {
     this.board.forEach(row => {
-      row.map((node) => { if (node.isPath || node.isVisited) node.isPath = node.isVisited = false; })
+      row.map((node) => { if (node.isPath || node.isVisited) node.isPath = node.isVisited = node.animateVisited = false; })
     });
   }
 
@@ -64,6 +64,7 @@ export class GridComponent implements OnInit {
   }
 
   onRandomWalls(): void {
+    this.onClearWalls();
     this.board.forEach((row) => {
       row.map((node) => { if (Math.floor(Math.random() * 4) == 2 && !node.isStartNode && !node.isEndNode) node.isWall = true })
     })

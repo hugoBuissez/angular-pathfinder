@@ -5,7 +5,7 @@ export interface Cell {
     isStartNode: boolean;
     isEndNode: boolean;
     isVisited: boolean;
-    animateVisited: boolean; // Wether the cell is colored we need it because the visited node are compute way before we animate them.
+    animateVisited: boolean; // Wether the cell is colored. We need it because the visited node are compute way before we animate them.
     isPath: boolean;
     isWall: boolean;
 }
