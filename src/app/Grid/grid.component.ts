@@ -14,11 +14,13 @@ export class GridComponent implements OnInit {
   constructor() {
   }
 
+  pathInfos: string = "";
+
   boardWitdh: number = 60;
   boardHeight: number = 25;
   board: Cell[][] = [];
 
-  hasStartNode: boolean = false;
+  hasStartNode: boolean = true;
   hasEndNode: boolean = false;
 
   startNode: Cell; // Attribute is null if the board has not startNode yet.
@@ -28,6 +30,8 @@ export class GridComponent implements OnInit {
   trace: boolean = false;
 
   isMouseDown: boolean = false;
+  isDragginStartNode: boolean = false;
+  isDraggingEndNode: boolean = false;
 
   ngOnInit(): void {
     this.setupGrid();
@@ -37,7 +41,11 @@ export class GridComponent implements OnInit {
     this.onClearPath();
     var bfs = new BFS(this.board);
     var bfsResult = bfs.execute(this.startNode, this.endNode, this.diagonals, this.trace);
+
+    if (bfsResult == null) { this.pathInfos = "No path found !"; return }
     var fatherPath = bfsResult[0];
+
+    this.pathInfos = "Found path of length " + (fatherPath.length - 1);
 
     if (this.trace)
       Utils.animateTrace(bfsResult[1], fatherPath)
@@ -71,15 +79,31 @@ export class GridComponent implements OnInit {
   }
 
   onMouseDownCell(cell: Cell): void {
-    this.isMouseDown = true;
+    if (cell.isStartNode) { this.isDragginStartNode = true; }
+    if (cell.isEndNode) { this.isDraggingEndNode = true; }
+
+    else
+      this.isMouseDown = true;
   }
 
   onMouseEnterCell(cell: Cell): void {
-    if (!this.isMouseDown || cell.isStartNode || cell.isEndNode) return;
-    cell.isWall = true;
+    if (this.isDragginStartNode) { cell.isStartNode = true; this.startNode = cell; }
+    else if (this.isDraggingEndNode) { cell.isEndNode = true; this.endNode = cell; }
+
+    else if (!this.isMouseDown || cell.isStartNode || cell.isEndNode) return;
+    else
+      cell.isWall = true;
+  }
+
+  onMouseLeaveCell(cell: Cell): void {
+    if (this.isDragginStartNode) cell.isStartNode = false
+    else if (this.isDraggingEndNode) cell.isEndNode = false;;
   }
 
   onMouseUpCell(cell: Cell): void {
+    this.isDragginStartNode = false;
+    this.isDraggingEndNode = false;
+
     this.isMouseDown = false;
   }
 
@@ -96,34 +120,22 @@ export class GridComponent implements OnInit {
           isVisited: false,
           animateVisited: false,
           isPath: false,
-          isWall: false
+          isWall: false,
         })
       }
 
       this.board.push(row);
     }
+
+    this.board[2][6].isStartNode = true;
+    this.startNode = this.board[2][6];
+
+    this.board[5][30].isEndNode = true;
+    this.endNode = this.board[5][30];
   }
 
   handleCell(cell: Cell): void {
 
-    if (cell.isWall)
-      return;
-
-    if (cell.isEndNode) {
-      cell.isEndNode = false;
-      this.hasEndNode = false;
-    } else if (cell.isStartNode) {
-      cell.isStartNode = false;
-      this.hasStartNode = false;
-    } else if (!this.hasStartNode) {
-      cell.isStartNode = true;
-      this.startNode = cell;
-      this.hasStartNode = true;
-    } else if (!this.hasEndNode) {
-      cell.isEndNode = true;
-      this.hasEndNode = true;
-      this.endNode = cell;
-    }
   }
 
   handleWall(cell: Cell): void {

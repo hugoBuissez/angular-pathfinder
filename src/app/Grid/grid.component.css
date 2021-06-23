@@ -6,6 +6,11 @@
   flex-direction: column;
 }
 
+.pathInfos {
+  margin-top: 5px;
+  font-size: 15px;
+}
+
 table {
   border-collapse: collapse;
 }
@@ -18,7 +23,7 @@ table {
 }
 
 .endNode {
-  animation-name: node-animation-end;
+  background-color: var(--end-node-color);
 }
 
 .visitedNode {
@@ -30,7 +35,7 @@ table {
 }
 
 .startNode {
-  animation-name: node-animation-start;
+  background-color: var(--start-node-color);
 }
 
 .wallNode {

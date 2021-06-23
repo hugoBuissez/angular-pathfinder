@@ -5,30 +5,34 @@
   (randomWalls)="onRandomWalls()"
   (clearWalls)="onClearWalls()"
   (trace)="onTrace()"
-
 ></app-header>
 
-<div class="gridCtn">
-  <table>
+<div class="gridCtn" draggable="false">
+  <table draggable="false">
     <tr *ngFor="let row of board; index as y">
       <td
         *ngFor="let cell of row; index as x"
         [ngClass]="{
           startNode: cell.isStartNode,
           endNode: cell.isEndNode,
-          visitedNode: cell.animateVisited &&
-            cell.isVisited && trace && !cell.isStartNode && !cell.isEndNode,
+          visitedNode:
+            cell.animateVisited &&
+            cell.isVisited &&
+            trace &&
+            !cell.isStartNode &&
+            !cell.isEndNode,
           pathNode: cell.isPath && !cell.isStartNode && !cell.isEndNode,
           wallNode: cell.isWall && !cell.isStartNode && !cell.isEndNode
         }"
-        
         (click)="handleCell(cell)"
         (mousedown)="onMouseDownCell(cell)"
         (mouseenter)="onMouseEnterCell(cell)"
+        (mouseleave)="onMouseLeaveCell(cell)"
         (mouseup)="onMouseUpCell(cell)"
-
         class="cell animNode left-hr"
       ></td>
     </tr>
   </table>
+
+  <p class="pathInfos">{{ this.pathInfos }}</p>
 </div>

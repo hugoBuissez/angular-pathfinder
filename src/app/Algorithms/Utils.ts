@@ -60,8 +60,6 @@ export class Utils {
      */
     public static animatePath(path: Cell[]) {
         for (let i = 0; i < path.length; i++) {
-            console.log("yes");
-
             setTimeout(
                 function () {
                     path[i].isVisited = false;

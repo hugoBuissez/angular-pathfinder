@@ -8,7 +8,6 @@ export class BFS {
   constructor(private board: Cell[][]) { this.board = board }
 
   public execute(startNode: Cell, endNode: Cell, diag: boolean, trace: boolean): any {
-    console.log('BFS');
 
     var queue: Cell[] = [];
     var father: number[] | undefined[] = []; // Father vector to retrieve the final path.
@@ -42,6 +41,9 @@ export class BFS {
           }
         }
       }
+
     }
+
+    return null; // No path found.
   }
 }
