@@ -32,6 +32,7 @@ export class GridComponent implements OnInit {
   isMouseDown: boolean = false;
   isDragginStartNode: boolean = false;
   isDraggingEndNode: boolean = false;
+  isErasingWalls: boolean = false;
 
   ngOnInit(): void {
     this.setupGrid();
@@ -80,33 +81,32 @@ export class GridComponent implements OnInit {
 
   onMouseDownCell(cell: Cell): void {
     if (cell.isStartNode) { this.isDragginStartNode = true; }
-    if (cell.isEndNode) { this.isDraggingEndNode = true; }
-
-    else
-      this.isMouseDown = true;
+    else if (cell.isEndNode) { this.isDraggingEndNode = true; }
+    else if (cell.isWall) { this.isErasingWalls = true; cell.isWall = false }
+    this.isMouseDown = true;
   }
 
   onMouseEnterCell(cell: Cell): void {
 
-    if (this.isDragginStartNode) { cell.isStartNode = true; this.startNode = cell; }
-    else if (this.isDraggingEndNode) { cell.isEndNode = true; this.endNode = cell; }
+    if (this.isDragginStartNode) { cell.isStartNode = true; this.startNode = cell; return; }
+    else if (this.isDraggingEndNode) { cell.isEndNode = true; this.endNode = cell; return; }
 
     else if (!this.isMouseDown || cell.isStartNode || cell.isEndNode) return;
+
+    if (this.isErasingWalls) cell.isWall = false;
     else
       cell.isWall = true;
   }
 
   onMouseLeaveCell(cell: Cell): void {
-    if (this.isDragginStartNode) cell.isStartNode = false
-    else if (this.isDraggingEndNode) cell.isEndNode = false;;
+    if (this.isDragginStartNode) cell.isStartNode = false;
+    else if (this.isDraggingEndNode) cell.isEndNode = false;
   }
 
   onMouseUpCell(cell: Cell): void {
-
-    if (cell.isWall) cell.isWall = false;
     this.isDragginStartNode = false;
     this.isDraggingEndNode = false;
-
+    this.isErasingWalls = false;
     this.isMouseDown = false;
   }
 

@@ -2,35 +2,55 @@
 
 <mat-divider></mat-divider>
 
-<div class="filterRow">
-  <button
-    mat-stroked-button
-    color="primary"
-    id="clearWalls"
-    (click)="emitClearWalls()"
-  >
-    Clear Walls
-  </button>
+<div class="topBar">
+  <div class="filterRow">
+    <button
+      mat-stroked-button
+      color="primary"
+      id="clearWalls"
+      (click)="emitClearWalls()"
+    >
+      Clear Walls
+    </button>
 
-  <button mat-stroked-button color="primary" (click)="emitRandomWalls()">
-    Random maze
-  </button>
+    <button mat-stroked-button color="primary" (click)="emitRandomWalls()">
+      Random maze
+    </button>
 
-  <button
-    mat-stroked-button
-    color="primary"
-    id="clearPath"
-    (click)="emitClearPath()"
-  >
-    Clear Path
-  </button>
+    <button
+      mat-stroked-button
+      color="primary"
+      id="clearPath"
+      (click)="emitClearPath()"
+    >
+      Clear Path
+    </button>
 
-  <mat-checkbox class="example-margin" (click)="emitTrace()">Show trace</mat-checkbox>
-  <mat-checkbox class="example-margin" (click)="emitDiagonal()">
-    Allow diagonal</mat-checkbox
-  >
+    <mat-checkbox class="example-margin" (click)="emitTrace()"
+      >Show trace</mat-checkbox
+    >
+    <mat-checkbox class="example-margin" (click)="emitDiagonal()">
+      Allow diagonal</mat-checkbox
+    >
 
-  <button mat-raised-button color="primary" id="btn" (click)="emitVisualise()">
-    Visualise
-  </button>
+    <button
+      mat-raised-button
+      color="primary"
+      id="btn"
+      (click)="emitVisualise()"
+    >
+      Visualise
+    </button>
+  </div>
+  <div class="algoDiv">
+    <mat-form-field appearance="fill">
+      <mat-label>Pick an algorithm</mat-label>
+      <mat-select [(value)]="selectedAlgorithm">
+        <mat-option></mat-option>
+        <mat-option [value]="option" *ngFor="let option of algorithms">{{
+          option
+        }}</mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
 </div>

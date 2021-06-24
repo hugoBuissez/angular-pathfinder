@@ -15,9 +15,16 @@ export class HeaderComponent implements OnInit {
   @Output() randomWalls = new EventEmitter();
   @Output() clearWalls = new EventEmitter();
 
-
   constructor() {
   }
+
+  algorithms: string[] = [
+    'Breadth-first search',
+    'A*',
+    'Dijkstra'
+  ];
+
+  selectedAlgorithm: string = this.algorithms[0];
 
 
   ngOnInit(): void {
