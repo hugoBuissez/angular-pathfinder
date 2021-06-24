@@ -11,7 +11,7 @@ export class Utils {
     public static getNeigboursNode(cell: Cell | undefined, board: Cell[][], diag: boolean): Cell[] {
         var result: Cell[] = [];
 
-        if (cell && cell.y < 24)
+        if (cell && cell.y < 29)
             result.push(board[cell.y + 1][cell.x]) // bottom.
         if (cell && cell.y > 0)
             result.push(board[cell.y - 1][cell.x]) // top.
@@ -20,9 +20,9 @@ export class Utils {
         if (cell && cell.x > 0)
             result.push(board[cell.y][cell.x - 1]) // left.
         if (diag) {
-            if (cell && cell.y < 24 && cell.x > 0)
+            if (cell && cell.y < 29 && cell.x > 0)
                 result.push(board[cell.y + 1][cell.x - 1]) // bottom left.
-            if (cell && cell.y < 24 && cell.x < 59)
+            if (cell && cell.y < 29 && cell.x < 59)
                 result.push(board[cell.y + 1][cell.x + 1]) // bottom right.
             if (cell && cell.y > 0 && cell.x < 59)
                 result.push(board[cell.y - 1][cell.x + 1]) // top right.

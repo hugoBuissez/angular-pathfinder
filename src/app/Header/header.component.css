@@ -1,13 +1,13 @@
 h1 {
   font-size: 35px;
-  margin-top: 20px;
+  margin: 0 20px 0 0;
 }
 
 .topBar {
   display: flex;
   flex-direction: row;
   align-items: center;
-  margin-top: 20px;
+  margin: 20px 0 20px 0;
 }
 
 .filterRow {
@@ -16,7 +16,6 @@ h1 {
   align-items: center;
   justify-content: space-around;
   width: 40%;
-  padding-bottom: 1.34375em;
 }
 
 .algoDiv {

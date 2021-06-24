@@ -17,7 +17,7 @@ export class GridComponent implements OnInit {
   pathInfos: string = "";
 
   boardWitdh: number = 60;
-  boardHeight: number = 25;
+  boardHeight: number = 30;
   board: Cell[][] = [];
 
   hasStartNode: boolean = true;

@@ -1,5 +1,4 @@
 .gridCtn {
-  margin-top: 20px;
   width: 100%;
   height: 100%;
   display: flex;
@@ -42,62 +41,18 @@ table {
   background-color: var(--wall-node-color);
 }
 
-.animNode {
-  animation-duration: 0.3s;
-  animation-timing-function: ease-out;
-  animation-delay: 0;
-  animation-direction: alternate;
-  animation-iteration-count: 1;
-  animation-fill-mode: forwards;
-  animation-play-state: running;
+#githubLink {
+  position: fixed;
+  padding: 5px;
+  bottom: 0;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 10px;
 }
 
-@keyframes node-animation-start {
-  0% {
-    transform: scale(0.3);
-    background-color: var(--start-node-color);
-  }
-
-  50% {
-    transform: scale(1.3);
-    background-color: var(--start-node-color);
-  }
-
-  100% {
-    transform: scale(1);
-    background-color: var(--start-node-color);
-  }
-}
-
-@keyframes node-animation-end {
-  0% {
-    transform: scale(0.3);
-    background-color: var(--end-node-color);
-  }
-
-  50% {
-    transform: scale(1.3);
-    background-color: var(--end-node-color);
-  }
-
-  100% {
-    transform: scale(1);
-    background-color: var(--end-node-color);
-  }
-}
-
-@keyframes node-animation-path {
-  0% {
-    transform: scale(0.3);
-    background-color: var(--path-color);
-  }
-  50% {
-    transform: scale(1.2);
-    background-color: var(--path-color);
-  }
-  100% {
-    transform: scale(0.9);
-    border-radius: 0;
-    background-color: var(--path-color);
-  }
+#githubLink > p {
+  background: rgba(255, 255, 255, 0.5);
+  font-size: 13px;
 }
