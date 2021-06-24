@@ -1,0 +1,28 @@
+<mat-expansion-panel
+  (opened)="panelOpenState = true"
+  (closed)="panelOpenState = false"
+>
+  <mat-expansion-panel-header>
+    <mat-panel-title> Options </mat-panel-title>
+  </mat-expansion-panel-header>
+
+  <mat-radio-group
+    aria-labelledby="example-radio-group-label"
+    class="example-radio-group"
+  >
+    <mat-radio-button
+      class="example-radio-button"
+      ([ngMode])="(selectedAlgorithm)"
+      *ngFor="let a of algorithms"
+      [value]="a"
+    >
+      {{ a }}
+    </mat-radio-button>
+  </mat-radio-group>
+
+  <mat-divider></mat-divider>
+
+  <mat-checkbox class="example-margin">Show trace</mat-checkbox>
+
+  <mat-checkbox class="example-margin"> Allow diagonal</mat-checkbox>
+</mat-expansion-panel>

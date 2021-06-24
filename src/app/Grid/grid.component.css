@@ -42,16 +42,22 @@ table {
 
 #githubLink {
   position: fixed;
+  left: 0;
+  right: 0;
   padding: 5px;
   bottom: 0;
-  width: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-bottom: 10px;
 }
 
 #githubLink > p {
   background: rgba(255, 255, 255, 0.5);
   font-size: 13px;
+}
+
+#selectPanel {
+  position: fixed;
+  left: 85%;
+  top: 10%;
 }

@@ -65,8 +65,7 @@ export class Utils {
                     path[i].isVisited = false;
                     path[i].isPath = true;
                 },
-                i * 40,
-                i
+                i * 25,
             );
         }
     }
@@ -81,8 +80,7 @@ export class Utils {
                     }
                     trace[i].animateVisited = true;
                 },
-                i * 10,
-                i
+                i * 2
             );
 
         }

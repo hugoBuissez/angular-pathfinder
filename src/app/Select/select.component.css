@@ -1,0 +1,22 @@
+.mat-expansion-panel {
+  width: 85%;
+  background: rgba(255, 255, 255, 0.5);
+}
+
+.example-radio-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.example-radio-button {
+  margin-top: 5px;
+  margin-left: -2px;
+}
+
+.example-radio-button:not(:last-child) {
+  margin-bottom: 5px;
+}
+
+.mat-divider {
+  margin: 10px 0;
+}
