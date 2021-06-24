@@ -87,6 +87,7 @@ export class GridComponent implements OnInit {
   }
 
   onMouseEnterCell(cell: Cell): void {
+
     if (this.isDragginStartNode) { cell.isStartNode = true; this.startNode = cell; }
     else if (this.isDraggingEndNode) { cell.isEndNode = true; this.endNode = cell; }
 
@@ -101,6 +102,8 @@ export class GridComponent implements OnInit {
   }
 
   onMouseUpCell(cell: Cell): void {
+
+    if (cell.isWall) cell.isWall = false;
     this.isDragginStartNode = false;
     this.isDraggingEndNode = false;
 

@@ -31,7 +31,7 @@ table {
 }
 
 .pathNode {
-  animation-name: node-animation-path;
+  background-color: var(--path-color);
 }
 
 .startNode {
@@ -89,16 +89,14 @@ table {
 @keyframes node-animation-path {
   0% {
     transform: scale(0.3);
-    border-radius: 50%;
     background-color: var(--path-color);
   }
   50% {
     transform: scale(1.2);
-    border-radius: 20%;
     background-color: var(--path-color);
   }
   100% {
-    transform: scale(1);
+    transform: scale(0.9);
     border-radius: 0;
     background-color: var(--path-color);
   }

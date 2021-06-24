@@ -7,6 +7,14 @@ export class BFS {
 
   constructor(private board: Cell[][]) { this.board = board }
 
+  /**
+   * Breadth-first search algorithm.
+   * @param startNode The starting node.
+   * @param endNode The target node.
+   * @param diag Wether diagonals are allowed.
+   * @param trace Wether algorithm trace is shown.
+   * @returns Array [The shortest path, the visited nodes (used to animate trace)].
+   */
   public execute(startNode: Cell, endNode: Cell, diag: boolean, trace: boolean): any {
 
     var queue: Cell[] = [];
