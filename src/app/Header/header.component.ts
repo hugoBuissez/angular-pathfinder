@@ -1,5 +1,4 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { GridComponent } from '../Grid/grid.component';
 
 @Component({
   selector: 'app-header',
